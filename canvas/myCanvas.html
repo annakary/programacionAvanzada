@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fillRect & fillStyle</title>
+</head>
+<body>
+    <canvas id="mycanvas" style="width: 800px; height: 800px; border: 2px solid black;">
+
+    </canvas>
+    <script>
+     var canvas = document.getElementById('mycanvas');
+     var ctx = canvas.getContext('2d');
+ 
+    ctx.fillStyle = "#749cdf";
+    ctx.fillRect(16, 8, 30, 15);
+    ctx.fillStyle = "#cd0009";
+    ctx.fillRect(40, 20, 30, 15);
+    ctx.fillStyle = "#ff96ffde";
+    ctx.fillRect(64, 32, 30, 15);
+
+
+    </script>
+</body>
+</html>
