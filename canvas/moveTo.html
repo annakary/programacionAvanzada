@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>moveTo, lineTo y stroke</title>
+</head>
+
+<body>
+    <canvas id="myCanva" style="width: 500px; height: 500px; border: 2px solid black;"></canvas>
+
+    <script>
+        var canva = document.getElementById('myCanva');
+        var ctx = canva.getContext('2d');
+
+        ctx.moveTo(130, 10);
+        ctx.lineTo(200, 50);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(160, 70);
+        ctx.lineTo(240, 78);
+        ctx.lineTo(160, 35);
+        ctx.fillStyle = "#ff96ffde";
+        ctx.fill();
+
+
+    </script>
+</body>
+
+</html>
