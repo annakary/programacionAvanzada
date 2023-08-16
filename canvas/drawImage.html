@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>imagen</title>
+</head>
+<body>
+   <canvas id="mycanvas" width="500" height="500" style="background-color: aquamarine;"></canvas> 
+   <img src="/canvas/cocodrilo.png" id="crea">
+   <script>
+    var canvas = document.getElementById('mycanvas');
+    var ctx = canvas.getContext('2d');
+ 
+    var img = document.getElementById('crea');
+    ctx.drawImage(img, 10, 10, 100, 100);
+   </script>
+</body>
+</html>
