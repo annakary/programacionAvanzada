@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utiliza beginPath, arc y stroke para realizar la siguiente figura.</title>
+</head>
+<body>
+    <canvas id="mycanvas" width: 500px; height: 500px; style="background-color: aquamarine;"></canvas>
+
+    <script>
+         var canvas = document.getElementById('mycanvas');
+        var ctx = canvas.getContext('2d');
+
+         ctx.beginPath();
+        ctx.arc(75, 75, 50, 0, 2 * Math.PI);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(155, 75, 50, 0, 2 * Math.PI);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(235, 75, 50, 3, 2 * Math.PI);
+        ctx.fillStyle = "red";
+        ctx.fill();
+        ctx.stroke();
+    </script>
+</body>
+</html>
