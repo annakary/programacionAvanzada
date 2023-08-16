@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>-Utiliza font y fillText para realizar la siguiente figura.</title>
+</head>
+
+<body>
+    <canvas id="mycanvas" width: 500px; height: 500px; style="background-color: pink;"></canvas>
+
+    <script>
+        var canvas = document.getElementById('mycanvas');
+        var ctx = canvas.getContext('2d');
+
+        ctx.font = "20px Prodex";
+        
+        ctx.fillStyle = "#901887";
+        ctx.fillText("Annakary Vega", 10, 20)
+
+        
+        ctx.font = "20px Georgia";
+        ctx.strokeStyle = "#201882";
+        ctx.strokeText("hola mundo en canvas!", 10, 50);
+    </script>
+</body>
+
+</html>
