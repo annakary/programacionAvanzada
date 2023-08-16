@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utiliza createLinearGradient, addColorStop y fillRect para realizar la siguiente figura.</title>
+</head>
+
+<body>
+    <canvas id="mycanvas" width: 800px; height: 800px; style="background-color: black;"></canvas>
+
+    <script>
+        var canvas = document.getElementById('mycanvas');
+        var ctx = canvas.getContext('2d');
+
+        var grd = ctx.createLinearGradient(140, 70, 150, 50);
+        grd.addColorStop(0, "purple");
+        grd.addColorStop(1, "pink");
+      
+
+        ctx.fillStyle = grd;
+        ctx.fillRect(140, 70, 150, 50);
+
+        var grd2 = ctx.createRadialGradient(70, 50, 10, 90, 60, 90);
+        grd2.addColorStop(0, "purple");
+        grd2.addColorStop(1, "pink");
+
+        ctx.fillStyle = grd2;
+        ctx.fillRect(0, 0, 150, 100);
+    </script>
+</body>
+
+</html>
