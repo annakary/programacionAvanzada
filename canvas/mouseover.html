@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="mycanvas" width="500" height="500" style="background-color: antiquewhite;"></canvas>
+    <script>
+        var canvas = document.getElementById('mycanvas');
+        var ctx = canvas.getContext('2d');
+
+        canvas.addEventListener("mousedown", (e) => {
+            console.log("mousedown")
+            console.log(e)
+
+            ctx.beginPath();
+            ctx.arc(e.layerX, e.layerY, 50, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.stroke();
+        });
+
+        canvas.addEventListener("mouseover", (e) => {
+            console.log("mouseover")
+           
+            ctx.fillStyle = randomRgbColor();
+            
+        });
+
+        function randomRgbColor() {
+            let r = randomInteger(255);
+            let g = randomInteger(255);
+            let b = randomInteger(255);
+            return `rgb(${r},${g},${b},${0.5})`;
+        }
+
+        function randomInteger(max) {
+            return Math.floor(Math.random() * (max + 1));
+        }
+    </script>
+</body>
+</html>
