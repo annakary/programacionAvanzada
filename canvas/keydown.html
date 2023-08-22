@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="500" height="500" ></canvas>
+    
+    <script>
+        const canvas = document.getElementById("myCanvas");
+        const ctx = canvas.getContext("2d");
+        var fig = true;
+        var pressed = false;
+        var color = randomRgbColor();
+        var x = 225, y = 225; 
+      
+
+        document.addEventListener("keydown", (e) => {
+            if (e.keyCode == 87) {
+                y -= 10;
+            }
+            if (e.keyCode == 83) {
+                y += 10;
+            }
+            if (e.keyCode == 65) {
+                x -= 10;
+            }
+            if (e.keyCode == 68) {
+                x += 10;
+            }
+            update(); 
+        });
+
+        
+
+
+        function update() 
+        {
+            ctx.fillStyle = "white";
+            ctx.fillRect(0, 0, 500, 500);
+            color = randomRgbColor();
+            ctx.fillStyle = color;
+            ctx.fillRect(x, y, 50, 50);
+            ctx.strokeRect(x,y,50,50);
+        }
+
+       
+
+            function randomRgbColor() {
+            let r = randomInteger(255);
+            let g = randomInteger(255);
+            let b = randomInteger(255);
+            return `rgb(${r},${g},${b},${0.5})`;
+        }
+
+        function randomInteger(max) {
+            return Math.floor(Math.random() * (max + 1));
+        }
+
+    </script>
+</body>
+</html>
