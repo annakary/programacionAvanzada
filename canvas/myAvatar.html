@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        canvas {
+            border: 5px solid rgb(252, 171, 252);
+            border-radius: 50%;
+            background-color: rgb(246, 162, 226);
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="avatarCanvas" width="500" height="500"></canvas>
+
+    <script>
+        const canvas = document.getElementById("avatarCanvas");
+        const ctx = canvas.getContext("2d");
+
+        //fondo
+        ctx.beginPath();
+        ctx.arc(250, 250, 200, 0, Math.PI * 2);
+        ctx.fillStyle = "#E0B7F5";
+        ctx.fill();
+        ctx.strokeStyle = "pink";
+        ctx.lineWidth = 10;
+        ctx.stroke();
+
+        //cabello
+        ctx.beginPath();
+        ctx.ellipse(250, 190, 65, 50, 0, 0, Math.PI * 2);
+        ctx.fillStyle = "#ECCF88";
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.fillStyle = "#ECCF88"; // Color del cabello
+        ctx.fillRect(182, 190, 135, 150);
+        ctx.fill();
+
+
+        // Dibujar la cabeza
+        ctx.beginPath();
+        ctx.ellipse(250, 250, 60, 80, 0, 0, Math.PI * 2);
+        ctx.fillStyle = "#F5D9B7";
+        ctx.fill();
+
+        //copete
+        ctx.beginPath();
+        ctx.ellipse(290, 175, 30, 40, -1, 1.7, Math.PI * 1.4);
+        ctx.fillStyle = "#ECCF88";
+        ctx.fill();
+        ctx.beginPath();
+        ctx.ellipse(210, 175, 30, 40, -2, 1.5, Math.PI * 1.5);
+        ctx.fillStyle = "#ECCF88";
+        ctx.fill();
+
+
+        // Dibujar los ojos
+        ctx.beginPath();
+        ctx.ellipse(225, 220, 15, 20, 0, 0, Math.PI * 2); // Ojo izquierdo ovalado
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fill();
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.ellipse(275, 220, 15, 20, 0, 0, Math.PI * 2); // Ojo derecho ovalado
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.ellipse(229, 220, 7, 10, 0, 0, Math.PI * 2); // Pupila izquierda ovalada
+        ctx.ellipse(279, 220, 7, 10, 0, 0, Math.PI * 2); // Pupila derecha ovalada
+        ctx.fillStyle = "#341207";
+        ctx.fill();
+
+
+        // Dibujar las mejillas
+        ctx.beginPath();
+        ctx.arc(210, 255, 15, 0, Math.PI * 2);
+        ctx.arc(280, 255, 15, 0, Math.PI * 2);
+        ctx.fillStyle = "pink";
+        ctx.fill();
+
+
+        // Dibujar las pestañas largas
+        ctx.beginPath();
+        ctx.moveTo(211, 210);
+        ctx.lineTo(204, 200);
+        ctx.moveTo(288, 210);
+        ctx.lineTo(295, 200);
+
+        ctx.moveTo(211, 220); // Pestaña izquierda
+        ctx.lineTo(201, 210);
+        ctx.moveTo(290, 220); // Pestaña derecha
+        ctx.lineTo(298, 210);
+
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+
+
+        //   nariz
+        ctx.beginPath();
+        // Media luna superior
+        // Conexión a la parte inferior
+        ctx.arc(250, 250, 5, 0, Math.PI); // Media luna inferior
+        ctx.fillStyle = "#FFCC00"; // Color de la nariz
+        ctx.fill();
+
+        // Dibujar los labios
+        ctx.beginPath();
+        ctx.moveTo(240, 290); // Punto de inicio (izquierda)
+        ctx.bezierCurveTo(230, 270, 250, 340, 260, 290); // Curva de los labios
+        ctx.fillStyle = "#FF0000"; // Color de los labios (rojo)
+        ctx.fill();
+        ctx.closePath();
+
+        // Triángulo izquierdo
+        ctx.beginPath();
+        ctx.moveTo(250, 290); // Punto de inicio (izquierda)
+        ctx.lineTo(245, 285); // Punto superior
+        ctx.lineTo(240, 290); // Punto derecho
+        ctx.closePath();
+        ctx.fillStyle = "#FF0000"; // Color del triángulo (rojo)
+        ctx.fill();
+
+        // Triángulo derecho
+        ctx.beginPath();
+        ctx.moveTo(260, 290); // Punto de inicio (derecha)
+        ctx.lineTo(255, 285); // Punto superior
+        ctx.lineTo(250, 290); // Punto derecho
+        ctx.closePath();
+        ctx.fillStyle = "#FF0000"; // Color del triángulo (rojo)
+        ctx.fill();
+
+
+        ctx.beginPath();
+        ctx.font = "50px Prodex";
+        ctx.fillStyle = "#901887";
+        ctx.fillText("Annakary Vega", 96, 370)
+
+
+    </script>
+
+</body>
+
+</html>
