@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="500" height="500" style="border: 1px solid black;"></canvas>
+
+    <script>
+        const canvas = document.getElementById("myCanvas");
+        const ctx = canvas.getContext("2d");
+
+        window.requestAnimationFrame = (function () {
+            return window.requestAnimationFrame ||
+                window.webkitRequestAnimationFree ||
+                window.mozRequestAnimationFree ||
+                function (callback) {
+                    window.setTimeout(callback, 17);
+                };
+        }());
+
+
+        var color = randomRgbColor();
+        var x = 225, y = 225;
+        var dir = 0;
+
+
+        document.addEventListener("keydown", (e) => {
+            if (e.keyCode == 87) {
+                dir = 1;
+            }
+            if (e.keyCode == 83) {
+                dir = 2;
+            }
+            if (e.keyCode == 65) {
+                dir = 3;
+            }
+            if (e.keyCode == 68) {
+                dir = 4;
+            }
+        });
+
+
+        function update() {
+            if (dir == 1) {
+                y-= 10;
+            }
+            if (dir == 2) {
+                y+= 10;
+            }
+            if (dir == 3) {
+                x-=10;
+            }
+            if (dir == 4) {
+                x+= 10;
+            }
+
+            paint();
+
+            window.requestAnimationFrame(update);
+
+        }
+
+        function paint() {
+            ctx.fillStyle = "white";
+            ctx.fillRect(0, 0, 500, 500);
+            color = randomRgbColor();
+            ctx.fillStyle = color;
+            ctx.fillRect(x, y, 50, 50);
+            ctx.strokeRect(x, y, 50, 50);
+        }
+        update();
+
+        function randomRgbColor() {
+            let r = randomInteger(255);
+            let g = randomInteger(255);
+            let b = randomInteger(255);
+            return `rgb(${r},${g},${b},${0.5})`;
+        }
+
+        function randomInteger(max) {
+            return Math.floor(Math.random() * (max + 1));
+        }
+
+
+
+    </script>
+</body>
+
+</html>
