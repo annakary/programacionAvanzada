@@ -27,36 +27,55 @@
         var color = randomRgbColor();
         var x = 225, y = 225;
         var dir = 0;
+        var speed = 10;
 
 
         document.addEventListener("keydown", (e) => {
-            if (e.keyCode == 87) {
-                dir = 1;
-            }
-            if (e.keyCode == 83) {
+            if(e.keyCode==87){
+                dir = 1;     
+           }
+            if(e.keyCode==83){
                 dir = 2;
             }
-            if (e.keyCode == 65) {
+            if(e.keyCode==68){
                 dir = 3;
             }
-            if (e.keyCode == 68) {
+            if(e.keyCode==65){
                 dir = 4;
+            }
+            if(e.keyCode==32){
+                speed+=10;
             }
         });
 
 
         function update() {
-            if (dir == 1) {
-                y-= 10;
+            if(dir == 1){
+                y-=speed;
+                if(y+50 <0){
+                    y = 550;
+                }
             }
-            if (dir == 2) {
-                y+= 10;
+
+            if(dir == 2){
+                y+=speed;
+                if(y+50 >500){
+                    y = -50;
+                }
             }
-            if (dir == 3) {
-                x-=10;
+
+            if(dir == 3){
+                x+=speed;
+                if(x+50>500){
+                    x = -50;
+                }
             }
-            if (dir == 4) {
-                x+= 10;
+
+            if(dir == 4){
+                x-=speed;
+                if(x+50 <0){
+                    x =550;
+                }
             }
 
             paint();
