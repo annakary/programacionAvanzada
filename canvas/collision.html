@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="1200" height="700" style="border: 1px solid black;"></canvas>
+
+    <script>
+        const canvas = document.getElementById("myCanvas");
+        const ctx = canvas.getContext("2d");
+        var ch = 700, cw = 1200;
+        var x = 225, y = 250;
+        var tx = 0, ty = 0;
+        var wx = 120, wy = 320;
+        var color = randomRgbColor();
+        var dir = 0;
+        var speed = 10;
+
+        window.requestAnimationFrame = (function () {
+            return window.requestAnimationFrame ||
+                window.webkitRequestAnimationFree ||
+                window.mozRequestAnimationFree ||
+                function (callback) {
+                    window.setTimeout(callback, 17);
+                };
+        }());
+
+
+
+
+
+        document.addEventListener("keydown", (e) => {
+            if (e.keyCode == 87) {
+                dir = 1;
+            }
+            if (e.keyCode == 83) {
+                dir = 2;
+            }
+            if (e.keyCode == 68) {
+                dir = 3;
+            }
+            if (e.keyCode == 65) {
+                dir = 4;
+            }
+            if (e.keyCode == 32) {
+                speed += 10;
+            }
+        });
+
+
+        function update() {
+            if (dir == 1) {
+                y -= speed;
+                if (y + 50 < 0) {
+                    y = ch + 50;
+                }
+            }
+
+            if (dir == 2) {
+                y += speed;
+                if (y + 50 > ch) {
+                    y = -50;
+                }
+            }
+
+            if (dir == 3) {
+                x += speed;
+                if (x + 50 > cw) {
+                    x = -50;
+                }
+            }
+
+            if (dir == 4) {
+                x -= speed;
+                if (x + 50 < 0) {
+                    x = cw + 50;
+                }
+            }
+            if (x < tx + 20 &&
+
+                x + 50 > tx &&
+
+                y < ty + 20 &&
+
+                y + 50 > ty) {
+
+                // console.log("hola");
+
+                tx = randomInteger(1200);
+                ty = randomInteger(700);
+
+
+
+            }
+            if (x < wx + 250 &&  x + 50 > wx &&  y < wy + 20 && y + 50 > wy) {
+
+                if (dir == 1) {
+                    y += speed;
+                    dir = 0;
+                }
+                if (dir == 2) {
+                    y -= speed;
+                    dir = 0;
+                }
+                if (dir == 3) {
+                    x -= speed;
+                    dir = 0;
+                }
+                if (dir == 4) {
+                    x += speed;
+                    dir = 0;
+                }
+            }
+
+            paint();
+
+            window.requestAnimationFrame(update);
+
+        }
+
+        function paint() {
+            //canvas
+            ctx.fillStyle = "white";
+            ctx.fillRect(0, 0, cw, ch);
+            color = randomRgbColor();
+            //cuadro que se mueve
+            ctx.fillStyle = color;
+            ctx.fillRect(x, y, 50, 50);
+            ctx.strokeRect(x, y, 50, 50);
+            //cuadro negro
+            ctx.fillStyle = "black";
+            ctx.fillRect(tx, ty, 20, 20);
+            ctx.strokeRect(tx, ty, 20, 20);
+            //cuadro negro
+            ctx.fillStyle = "gray";
+            ctx.fillRect(wx, wy, 200, 20);
+            ctx.strokeRect(wx, wy, 200, 20);
+
+        }
+
+
+        update();
+
+        function randomRgbColor() {
+            let r = randomInteger(255);
+            let g = randomInteger(255);
+            let b = randomInteger(255);
+            return `rgb(${r},${g},${b},${0.5})`;
+        }
+
+        function randomInteger(max) {
+            return Math.floor(Math.random() * (max + 1));
+        }
+
+
+
+    </script>
+</body>
+
+</html>
