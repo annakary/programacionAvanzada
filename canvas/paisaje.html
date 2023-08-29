@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Paisaje en Canvas</title>
+  <style>
+    canvas {
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" width="500" height="500"></canvas>
+
+  <script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+
+    
+    ctx.fillStyle = "#9DE6FF";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+   
+    ctx.beginPath();
+    ctx.arc(80, 80, 50, 0, Math.PI * 2);
+    ctx.fillStyle = "#FFD700";
+    ctx.fill();
+
+   
+    ctx.fillStyle = "#B6FF94";
+    ctx.fillRect(0, 300, canvas.width, canvas.height - 300);
+
+  
+    ctx.fillStyle = "#7F5865";
+    ctx.beginPath();
+    ctx.moveTo(100, 300);
+    ctx.lineTo(300, 100);
+    ctx.lineTo(500, 300);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.fillStyle = "#7D4C4E";
+    ctx.beginPath();
+    ctx.moveTo(0, 300);
+    ctx.lineTo(200, 50);
+    ctx.lineTo(400, 300);
+    ctx.closePath();
+    ctx.fill();
+
+    
+    ctx.fillStyle = "#B985FC";
+    ctx.fillRect(200, 250, 150, 150);
+
+    ctx.fillStyle = "#FC85CA";
+    ctx.beginPath();
+    ctx.moveTo(200, 250);
+    ctx.lineTo(275, 150);
+    ctx.lineTo(350, 250);
+    ctx.closePath();
+    ctx.fill();
+
+  
+    ctx.fillStyle = "#AA20FF";
+    ctx.fillRect(250, 320, 50, 80);
+
+    
+    ctx.fillStyle = "#FD2AA4";
+    ctx.fillRect(220, 270, 40, 40);
+
+    ctx.fillStyle = "#FD2AA4";
+    ctx.fillRect(288, 270, 40, 40);
+
+    drawFlower(50, 450, "red");
+    drawFlower(150, 420, "pink");
+    drawFlower(250, 460, "purple");
+    drawFlower(350, 430, "#FF8BD1");
+
+    function drawFlower(x, y, color) {
+      
+      ctx.fillStyle = "green";
+      ctx.fillRect(x + 5, y, 5, 40);
+
+      ctx.beginPath();
+      ctx.arc(x, y - 10, 10, 0, Math.PI * 2);
+      ctx.fillStyle = color;
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(x + 20, y - 10, 10, 0, Math.PI * 2);
+      ctx.fillStyle = color;
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(x + 10, y, 10, 0, Math.PI * 2);
+      ctx.fillStyle = color;
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(x + 10, y - 20, 10, 0, Math.PI * 2);
+      ctx.fillStyle = color;
+      ctx.fill();
+
+      
+       ctx.beginPath();
+      ctx.arc(x + 10, y - 10, 5, 0, Math.PI * 2);
+      ctx.fillStyle = "yellow";
+      ctx.fill();
+    }
+    
+  </script>
+
+</body>
+</html>
