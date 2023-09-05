@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="500" height="500" style="border: 1px solid black;"></canvas>
+
+    <script>
+        const canvas = document.getElementById("myCanvas");
+        const ctx = canvas.getContext("2d");
+        
+        var color = randomRgbColor();
+        var x = 225, y = 225;
+        var dir = 0;
+        var speed = 5;
+        var walls = [];
+        var pause = false;
+        var score = 0;
+
+        class cuadrado {
+            constructor(x, y, w, h, c) {
+                this.x = x;
+                this.y = y;
+                this.w = w;
+                this.h = h;
+                this.c = c;
+            }
+            paint(ctx) {
+                ctx.fillStyle = this.c;
+                ctx.fillRect(this.x, this.y, this.w, this.h);
+                ctx.strokeRect(this.x, this.y, this.w, this.h, this.c);
+
+            }
+            seTocan(otro) {
+                return this.x < otro.x + otro.w &&
+                       this.x + this.w > otro.x &&
+                       this.y < otro.y + otro.h &&
+                       this.y + this.h > otro.y;
+            }
+        }
+
+        const player = new cuadrado(225, 225, 50, 50, "black");
+        const target = new cuadrado(randomInteger(500), randomInteger(500), 30, 30, "black");
+        walls.push(new cuadrado(150, 350, 250,30, "gray"));
+        walls.push(new cuadrado(150, 100, 250,30, "gray"));
+        walls.push(new cuadrado(150, 200, 250,30, "gray"));
+
+
+
+
+        window.requestAnimationFrame = (function () {
+            return window.requestAnimationFrame ||
+                window.webkitRequestAnimationFree ||
+                window.mozRequestAnimationFree ||
+                function (callback) {
+                    window.setTimeout(callback, 17);
+                };
+        }());
+
+
+
+
+
+        document.addEventListener("keydown", (e) => {
+            if(e.keyCode == 87){
+                    dir = 1;     
+                }
+                if(e.keyCode == 83){
+                    dir = 2;
+                }
+                if(e.keyCode == 68){
+                    dir = 3;
+                }
+                if(e.keyCode == 65){
+                    dir = 4;
+                }
+                if(e.keyCode == 32){
+                pause = !pause; 
+            }
+        });
+
+
+        function update() {
+            if (!pause) {
+                if (dir == 1) {
+                player.y -= speed;
+                if (player.y + 50 < 0) {
+                    player.y = 550;
+                }
+            }
+
+            if (dir == 2) {
+                player.y += speed;
+                if (player.y + 50 > 500) {
+                    player.y = -50;
+                }
+            }
+
+            if (dir == 3) {
+                player.x += speed;
+                if (player.x + 50 > 500) {
+                    player.x = -50;
+                }
+            }
+
+            if (dir == 4) {
+                player.x -= speed;
+                if (player.c + 50 < 0) {
+                    player.x = 550;
+                }
+            }  
+            }
+            
+
+            if(player.seTocan(target)){
+                target.x = randomInteger(400);
+                target.y = randomInteger(400);
+                score += 10;
+            }
+
+            for (var i = walls.length - 1; i >= 0; i--) {
+                if (player.seTocan(walls[i])) {
+                        if(dir == 1){
+                            player.y+=speed;
+
+                        }
+                        if(dir == 2){
+                            player.y-=speed;
+                        }
+
+                        if(dir == 3){
+                            player.x-=speed;
+                        }
+
+                        if(dir == 4){
+                            player.x+=speed;
+                        }
+                }
+            }
+            paint();
+
+            window.requestAnimationFrame(update);
+
+        }
+
+        function paint() {
+            ctx.fillStyle = "white";
+            ctx.fillRect(0, 0, 500, 500);
+            color = randomRgbColor();
+
+            player.c = randomRgbColor();
+            player.paint(ctx);
+            target.paint(ctx);
+
+            ctx.fillStyle = "black";
+            ctx.font ="20px Georgia";
+            ctx.fillText("SCORE: " + score, 10, 20);
+
+            for(var i = walls.length - 1; i >= 0; i--){
+                walls[i].paint(ctx);
+            }
+            if(pause){
+                ctx.fillStyle="rgba(157, 230, 255,0.5)";
+                ctx.fillRect(0,0,canvas.width, canvas.height);
+                ctx.font = "40px Georgia";
+                ctx.fillStyle = "black";
+                ctx.fillText("P A U S E", 190, 250);
+            }
+            // ctx.fillStyle = color;
+            // ctx.fillRect(x, y, 50, 50);
+            // ctx.strokeRect(x, y, 50, 50);
+        }
+
+        update();
+
+        function randomRgbColor() {
+            let r = randomInteger(255);
+            let g = randomInteger(255);
+            let b = randomInteger(255);
+            return `rgb(${r},${g},${b},${0.5})`;
+        }
+
+        function randomInteger(max) {
+            return Math.floor(Math.random() * (max + 1));
+        }
+
+
+
+    </script>
+</body>
+
+</html>
