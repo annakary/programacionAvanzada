@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="container ml-10 " id="container-app">
+        
+        <form v-if="!access">
+            <div>
+                <label class="block mb-2 text-m font-medium text-black">Email</label>
+                <input type="email" v-model="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/4 p-2.5" placeholder="Ingresa tu Nombre" required>
+                <label  class="block mb-2 text-m font-medium text-black">Password</label>
+                <input type="password" v-model="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/4 p-2.5" placeholder="Ingresa tu Apellido" required>
+        
+                <button  type="button" @click="login" class="mt-3 l-3 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Access</button>
+            
+            </div>
+              
+        </form>
+
+        <div v-if="access">
+            <table>
+
+            </table>
+        </div>
+
+    <script>
+        
+        const { createApp, ref } = Vue;
+        
+        const app = createApp({
+            setup() {
+            email = ref(''), password= ref(''),access = ref(false)
+
+                return {
+                email,
+                password,
+                access
+                };
+            },
+            methods: {
+              async login(){
+                const response = await fetch("users.json");
+                const users = await response.json();
+
+                console.log(users)
+
+                users.forEach((users) => {
+                   if (this.email == users.email){
+                    if(this.password == users.password){
+                        alert("Bienvenido "+ users.name)
+                        localStorage.setItem("user_data", JSON.stringify(users));
+
+                        this.access = true;
+                    }
+                   }
+                })
+                if(!this.access){
+                    alert("verifique su información")
+                }
+               }
+            }
+        });
+
+        app.mount('#container-app');
+    </script>
+</body>
+</html>
