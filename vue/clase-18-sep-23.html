@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-900">
@@ -92,6 +92,18 @@
                 users
                 };
             },
+
+            async mounted(){
+
+const update = async () =>{
+    const response = await fetch("users.json");
+     this.users = await response.json();
+ }
+ 
+ if(this.access){
+    update();
+ }
+},
             methods: {
               async login(){
                 const response = await fetch("users.json");
@@ -115,18 +127,9 @@
                 if(!this.access){
                     alert("verifique su información")
                 }
-               },
-            
-               async mounted(){
-
-                const update = async () =>{
-                    const response = await fetch('users.json');
-                    this.users = await response.json();
-                }
-                if(this.access){
-                    update();
-                }
                }
+            
+              
             }
         });
 
