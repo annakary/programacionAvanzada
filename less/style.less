@@ -1,0 +1,57 @@
+@font-family-base: Arial, sans-serif;
+@background-color-base: #c8c8c8;
+@primary-color: #ffffff;
+@secondary-color: #0f00df;
+
+body {
+  font-family: @font-family-base;
+  background-color: @background-color-base;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.login-form {
+  background-color: @primary-color;
+  padding: 50px;
+  border-radius: 30px;
+}
+
+.container {
+  width: 300px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 10px 10px rgba(2, 1, 1, 0.1);
+}
+
+.login-form h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: @secondary-color;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
